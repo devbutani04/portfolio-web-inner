@@ -107,7 +107,7 @@ const styles: { [key: string]: CSSProperties } = {
         width: '200px',
         borderRadius: '50%',
         objectFit: 'cover',  // Correctly typed value for objectFit
-        margin: '80px 20px 0 0'
+        margin: '120px 20px 0 0'
     }
 };
 
