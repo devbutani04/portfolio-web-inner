@@ -23,7 +23,7 @@ app.post('/api/contact', async (req, res) => {
 
   try {
     const mailOptions = {
-      from: 'rjparsana8@gmail.com',
+      from: 'quillixsolutions@gmail.com',
       to: email, // Email received from the contact form
       subject: `New message from ${name}`,
       text: `Message: ${message}`,
