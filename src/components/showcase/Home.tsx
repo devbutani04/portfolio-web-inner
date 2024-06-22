@@ -31,11 +31,11 @@ const Home: React.FC<HomeProps> = (props) => {
                     to="projects"
                     text="PROJECTS"
                 />
-                <Link
+                {/* <Link
                     containerStyle={styles.link}
                     to="blog"
                     text="BLOG"
-                />
+                /> */}
                 <Link
                     containerStyle={styles.link}
                     to="contact"

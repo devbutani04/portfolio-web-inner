@@ -96,7 +96,6 @@ const Projects: React.FC<ProjectsProps> = (props) => {
     return (
         <div className="site-page-content">
             <h1>Projects</h1>
-            <h3>& Hobbies</h3>
             <br />
             <p>
                 Click on one of the areas below to check out some of my favorite
@@ -110,21 +109,21 @@ const Projects: React.FC<ProjectsProps> = (props) => {
                     icon={website}
                     iconStyle={styles.computerIcon}
                     title="Websites"
-                    subtitle="Works"
+                    subtitle=""
                     route="software"
                 />
                 <ProjectBox
                     icon={software}
                     iconStyle={styles.SoftwareIcon}
                     title="Software"
-                    subtitle="VENTURES"
+                    subtitle=""
                     route="Software"
                 />
                 <ProjectBox
                     icon={chatbots}
                     iconStyle={styles.chatbots}
                     title="Chatbot"
-                    subtitle="ENDEAVORS"
+                    subtitle=""
                     route="Chatbot"
                 />
             </div>
