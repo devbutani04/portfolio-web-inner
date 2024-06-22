@@ -64,7 +64,7 @@ const About: React.FC<AboutProps> = () => {
             <p>
                 Thanks for reading about me and exploring my portfolio website. If you have any questions or
                 would like to get in touch, feel free to reach me through the contact page or send an email
-                to <a href="mailto:Quillixsolutions@gmail.com">Quillixsolutions@gmail.com</a>.
+                to <a href="mailto:mail@quillix.in">mail@quillix.in</a>.
             </p>
         </div>
     );
