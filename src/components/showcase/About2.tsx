@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom';
 import { CSSProperties } from 'react'; // Import CSSProperties for style typing
 
 // Importing images from assets
-import workingAtComputer from '../../assets/pictures/workingAtComputer.jpg';
+// import workingAtComputer from '../../assets/pictures/workingAtComputer.jpg';
+import jeel from '../../assets/pictures/jeel.jpg';
+import nikhil from '../../assets/pictures/nikhil.jpg';
+import yogesh from '../../assets/pictures/yogesh.jpg';
 import currentMe from '../../assets/pictures/currentme.jpg';
 import logoo from '../../assets/pictures/logo.png';
 
@@ -43,7 +46,7 @@ const About: React.FC<AboutProps> = () => {
             <h3>WE ARE...</h3><br />
             {/* <div className="image-container" style={styles.imagesContainer}> */}
             <div style={styles.img}>
-                <img src={workingAtComputer} style={styles.image} alt="Working at computer" />
+                <img src={jeel} style={styles.image} alt="Jeel Borda" />
                 <p><strong>Jeel Borda</strong>
                     <br />The Visionary Founder<br /><br />
                     Jeel Borda's journey with Quillix began in a modest single room in Singapore, where he stayed with his steadfast supporter, Yogesh Shekhada. With a vision to create a dynamic IT company, Jeel started by securing clients from the UK. Recognizing the immense talent pool in India, he recruited brilliant students, offering them opportunities to work remotely on cutting-edge projects.<br /><br />
@@ -58,10 +61,10 @@ const About: React.FC<AboutProps> = () => {
 
                     In 2022, Nikhil joined the Quillix team as the CFO, bringing with him a wealth of knowledge and a strategic approach to financial management. His ability to navigate complex financial landscapes and his commitment to excellence have been crucial in strengthening Quillix's financial foundation. Nikhil's story is one of continuous growth, dedication, and the pursuit of excellence in every endeavor.
                 </p>
-                <img src={workingAtComputer} style={styles.image} alt=" logoo" />
+                <img src={nikhil} style={styles.image} alt="Nikhil Kachhadiya" />
             </div><br /><br />
             <div>
-                <img src={workingAtComputer} style={styles.image} alt="Current me" />
+                <img src={yogesh} style={styles.image} alt="Yogesh Shekhada" />
                 <p><strong>Yogesh Shekhada
                 </strong>
                     <br />The Motivational Leader<br /><br />
