@@ -5,6 +5,7 @@ import ghIcon from '../../assets/pictures/contact-gh.png';
 import inIcon from '../../assets/pictures/contact-in.png';
 import instaIcon from '../../assets/pictures/Instagram_icon.jpg';
 import whatsappIcon from '../../assets/pictures/WhatsApp_icon.jpg';
+
 import ResumeDownload from './ResumeDownload';
 
 export interface ContactProps {}

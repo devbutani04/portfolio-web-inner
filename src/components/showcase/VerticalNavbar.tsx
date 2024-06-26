@@ -19,7 +19,8 @@ const VerticalNavbar: React.FC<VerticalNavbarProps> = (props) => {
     useEffect(() => {
         if (location.pathname.includes('/projects')) {
             setProjectsExpanded(true);
-        } else {
+        }
+         else {
             setProjectsExpanded(false);
         }
         if (location.pathname === '/') {
@@ -58,9 +59,9 @@ const VerticalNavbar: React.FC<VerticalNavbarProps> = (props) => {
                 /> */}
                 <Link
                     // containerStyle={Object.assign(
-                    //     {},
-                    //     styles.link,
-                    //     projectsExpanded && styles.expandedLink
+                    //      {},
+                    //      styles.link,
+                    //      projectsExpanded && styles.expandedLink
                     // )}
                     containerStyle={styles.link}
                     to="projects"

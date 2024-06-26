@@ -31,7 +31,7 @@ const About: React.FC<AboutProps> = () => {
             </p><br /><br />
             {/* <ResumeDownload /> */}
 
-            <h3>About Us</h3><br />
+            <h2>About Us</h2><br />
             <p>
                 {/* \Our Story */}
                 Quillix was born out of the shared dreams and determination of three passionate individuals: Jeel Borda, Nikhil Kachhadiya, and Yogesh Shekhada. In 2021, while studying and navigating the challenges of student life in Singapore, we found ourselves deeply immersed in the world of IT projects. The synergy of our skills and the drive to create something impactful led us to form Quillix.<br /><br />
@@ -107,7 +107,7 @@ const styles: { [key: string]: CSSProperties } = {
         width: '200px',
         borderRadius: '50%',
         objectFit: 'cover',  // Correctly typed value for objectFit
-        margin: '120px 20px 0 0'
+        margin: '60px 20px 0 0'
     }
 };
 
