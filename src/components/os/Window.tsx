@@ -6,6 +6,7 @@ import Icon from '../general/Icon';
 import Button from './Button';
 import DragIndicator from './DragIndicator';
 import ResizeIndicator from './ResizeIndicator';
+import Resizeicon from '../../assets/pictures/resize.png'
 
 export interface WindowProps {
     closeWindow: () => void;
@@ -250,6 +251,9 @@ const Window: React.FC<WindowProps> = (props) => {
                                     onClick={props.minimizeWindow}
                                 />
                                 <Button icon="maximize" onClick={maximize} />
+                                <div style={{position:'absolute' , right:'25px' , bottom:'40px' , zIndex:'10000000'}}>
+                                <button onClick={maximize} style={{ border:'none', borderRadius:'50%' ,padding:'15px', color:'white'}}><img src={Resizeicon} alt='resize' width={20} height={20}/></button>
+                                </div>
                                 <div style={{ paddingLeft: 2 }}>
                                     <Button
                                         icon="close"

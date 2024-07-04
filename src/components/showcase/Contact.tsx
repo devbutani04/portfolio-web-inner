@@ -323,7 +323,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     },
     button: {
         minWidth: 184,
-        height: 32,
+        padding:10
     },
     header: {
         display: 'flex',

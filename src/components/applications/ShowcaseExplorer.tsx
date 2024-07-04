@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from '../showcase/Home';
 import About from '../showcase/About2';
@@ -14,11 +14,11 @@ import ArtProjects from '../showcase/projects/Art';
 import VerticalNavbar from '../showcase/VerticalNavbar';
 import useInitialWindowSize from '../../hooks/useInitialWindowSize';
 
-export interface ShowcaseExplorerProps extends WindowAppProps {}
-
+export interface ShowcaseExplorerProps extends WindowAppProps {
+}
 const ShowcaseExplorer: React.FC<ShowcaseExplorerProps> = (props) => {
     const { initWidth, initHeight } = useInitialWindowSize({ margin: 100 });
-
+    
     return (
         <Window
             top={24}

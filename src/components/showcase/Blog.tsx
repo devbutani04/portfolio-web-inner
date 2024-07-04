@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
-import image1 from '../../assets/pictures/logo.png';
-import image2 from '../../assets/pictures/logo.png';
+import image1 from '../../assets/pictures/blog1.jpg';
+import image2 from '../../assets/pictures/blog2.jpg';
+import { Grid} from '@mui/material';
+import axios from 'axios';
 
 const Navbar = styled.nav`
-    color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -17,7 +18,6 @@ const NavTitle = styled.h1`
 
 const NavLinks = styled.div`
     a {
-        color: white;
         text-decoration: none;
         font-size: 16px;
 
@@ -31,10 +31,10 @@ const GalleryContainer = styled.div`
     display: flex;
     gap: 30px;
     justify-content: center;
-    padding: 60px;
-    position: relative;
+    // padding: 60px;
+    // position: relative;
     // margin-left: 110px;
-    margin: auto;
+    // margin: auto;
 `;
 
 const Card = styled.div<{ isFixed?: boolean }>`
@@ -106,10 +106,12 @@ const CardAuthor = styled.span`
 `;
 
 const Blog: React.FC = () => {
+    let [Search , setSearch] = useState('');
+
     const cards = [
         {
             category: 'Technology',
-            title: "What's New In 2022 Tech",
+            title: "WHAT'S YOUR STORY?",
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi perferendis molestiae non nemo doloribus. Doloremque, nihil! At ea atque quidem!',
             author: 'Jane Doe',
             time: '2h ago',
@@ -117,8 +119,8 @@ const Blog: React.FC = () => {
             isFixed: false
         },
         {
-            category: 'Food',
-            title: 'Delicious Food',
+            category: 'Technology',
+            title: 'My Blog',
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi perferendis molestiae non nemo doloribus. Doloremque, nihil! At ea atque quidem!',
             author: 'Jony Doe',
             time: 'Yesterday',
@@ -126,19 +128,29 @@ const Blog: React.FC = () => {
             isFixed: false
         }
     ];
+    
 
     return (
-        <>
-            <Navbar>
-                <NavTitle>My Gallery</NavTitle>
+        <div className="site-page-content">
+            {/* <Navbar>
+                <NavTitle>My Blog</NavTitle>
                 <NavLinks>
                     <a href="#home">Home</a>
                     <a href="#about">About</a>
                     <a href="#contact">Contact</a>
                 </NavLinks>
-            </Navbar>
+            </Navbar> */}
+                <h2>My Blog</h2><br/><br/>
+                <input style={styles.formItem} type="text" placeholder="Search" onChange={(e) => setSearch(e.target.value)}/>
             <GalleryContainer>
-                {cards.map((card, index) => (
+            <Grid container spacing={3}>
+                {cards.filter((card1 , i1)=>{
+                    if (card1.title.match(Search)) {
+                        return card1
+                    }
+                })
+                .map((card, index) => (
+                    <Grid item xs={12} sm={6} md={4}>
                     <Card key={index} isFixed={card.isFixed}>
                         <CardImage imageUrl={card.imageUrl} />
                         <CardContent>
@@ -151,10 +163,22 @@ const Blog: React.FC = () => {
                             </CardFooter>
                         </CardContent>
                     </Card>
+                    </Grid>
                 ))}
+                </Grid>
             </GalleryContainer>
-        </>
+            
+        </div>
     );
+}
+const styles: { [key: string]: React.CSSProperties } = {
+    formItem: {
+        marginTop: 4,
+        marginBottom: 16,
+        padding: '8px',
+        borderRadius: '4px',
+        border: '1px solid #ccc',
+    }
 }
 
 export default Blog;

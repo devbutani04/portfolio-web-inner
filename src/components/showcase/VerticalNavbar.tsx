@@ -16,6 +16,10 @@ const VerticalNavbar: React.FC<VerticalNavbarProps> = (props) => {
         navigate('/contact');
     };
 
+    const showhome=()=>{
+        navigate('/');
+    }
+
     useEffect(() => {
         if (location.pathname.includes('/projects')) {
             setProjectsExpanded(true);
@@ -34,7 +38,8 @@ const VerticalNavbar: React.FC<VerticalNavbarProps> = (props) => {
     return !isHome ? (
         <div style={styles.navbar}>
             <div style={styles.header}>
-            <img src={logo} style={styles.image} alt=" logoo" />
+           
+           <img src={logo} style={styles.image} alt=" logoo" onClick={showhome}/>
                 {/* <h1 style={styles.headerText}>Quillix</h1> */}
                 {/* <h1 style={styles.headerText}>Solutions</h1> */}
                 <h3 style={styles.headerShowcase}></h3>
@@ -112,7 +117,7 @@ const styles: StyleSheetCSS = {
         width: 300,
         height: '100%',
         flexDirection: 'column',
-        padding: 48,
+        padding: '48px 0 48px 48px',
         boxSizing: 'border-box',
         position: 'fixed',
         overflow: 'hidden',
@@ -133,7 +138,8 @@ const styles: StyleSheetCSS = {
         marginBottom: 8,
     },
     link: {
-        marginBottom: 32,
+        marginBottom: 20,
+        color:"black"
     },
     expandedLink: {
         marginBottom: 16,
@@ -145,6 +151,7 @@ const styles: StyleSheetCSS = {
     },
     insetLink: {
         marginBottom: 8,
+        color:'black',
     },
     links: {
         flexDirection: 'column',
@@ -153,6 +160,7 @@ const styles: StyleSheetCSS = {
     },
     image: {
         width: '50%',
+        cursor:'pointer'
     },
     spacer: {
         flex: 1,

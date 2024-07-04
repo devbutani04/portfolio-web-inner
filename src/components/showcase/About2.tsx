@@ -20,7 +20,7 @@ const About: React.FC<AboutProps> = () => {
     return (
         <div className="site-page-content">
             {/* <h1>Welcome to Quillix Solutions</h1> */}
-            <h1 style={{ marginLeft: -16 }}>Welcome</h1>
+            <h1>Welcome</h1>
             <h3>to Quillix Solutions...</h3>
             <p><br />
                 Welcome to Quillix Solutions, your trusted partner in IT solutions and services.
@@ -85,7 +85,7 @@ const About: React.FC<AboutProps> = () => {
             <p>
                 Thanks for reading about me and exploring my portfolio website. If you have any questions or
                 would like to get in touch, feel free to reach me through the contact page or send an email
-                to <a href="mailto:mail@quillix.in">mail@quillix.in</a>.
+                to <a href="mailto:Quillixsolutions@gmail.com">Quillixsolutions@gmail.com</a>.
             </p>
         </div>
     );
