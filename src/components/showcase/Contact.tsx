@@ -272,15 +272,11 @@ const Contact: React.FC<ContactProps> = (props) => {
                     </div>
                 </div>
                 <br />
-                <div>335, The Galleria 2, The Galleria Business Hub, Mahavir Chowk, Yogi Chowk Ground, Chikuwadi, Nana Varachha, Surat, Gujarat 395010</div>
+                <div>
+                335, The new Galleria Business Hub, 2, Mahavir Chowk, Yogi Chowk Ground, Chikuwadi, Nana Varachha, Surat, Gujarat 395006</div>
                 <br/>
                 <div>
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d873.0511089983053!2d72.88570698781841!3d21.218310447016886!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04fdb617d26c1%3A0xd6cb2f23923633b8!2sThe%20Galleria%202!5e0!3m2!1sen!2sin!4v1718190090429!5m2!1sen!2sin"
-                        width="100%"
-                        height="500"
-                        loading="lazy"
-                    ></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3719.3336887620662!2d72.88461357597315!3d21.21861248122942!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04f4c180d7ff7%3A0x63d8793e24aba816!2sQuillix%20Solutions!5e0!3m2!1sen!2sin!4v1720079290363!5m2!1sen!2sin" width="100%" height="500" loading="lazy" ></iframe>
                 </div>
             </div>
            
