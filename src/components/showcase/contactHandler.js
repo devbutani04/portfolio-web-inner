@@ -45,10 +45,10 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
-// Get the button, and when the user clicks on it, execute myFunction
-document.querySelector("myBtn").onclick = function() {myFunction()};
+// // Get the button, and when the user clicks on it, execute myFunction
+// document.querySelector("myBtn").onclick = function() {myFunction()};
 
-/* myFunction toggles between adding and removing the show class, which is used to hide and show the dropdown content */
-function myFunction() {
-  document.querySelector("myDropdown").classList.toggle("show");
-}
+// /* myFunction toggles between adding and removing the show class, which is used to hide and show the dropdown content */
+// function myFunction() {
+//   document.querySelector("myDropdown").classList.toggle("show");
+// }
