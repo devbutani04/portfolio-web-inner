@@ -251,7 +251,7 @@ const Window: React.FC<WindowProps> = (props) => {
                                     onClick={props.minimizeWindow}
                                 />
                                 <Button icon="maximize" onClick={maximize} />
-                                <div style={{position:'absolute' , right:'25px' , bottom:'40px' , zIndex:'10000000'}}>
+                                <div style={{position:'absolute' , right:'25px' , bottom:'40px' , zIndex:'1'}}>
                                 <button onClick={maximize} style={{ border:'none', borderRadius:'50%' ,padding:'15px', color:'white'}}><img src={Resizeicon} alt='resize' width={20} height={20}/></button>
                                 </div>
                                 <div style={{ paddingLeft: 2 }}>
