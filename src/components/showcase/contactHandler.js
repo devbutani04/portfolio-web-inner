@@ -25,7 +25,7 @@ app.post('/api/contact', async (req, res) => {
     const mailOptions = {
       from: email,
       to: 'quillixsolutions@gmail.com', // Email received from the contact form
-      subject: `Contact Data`,
+      subject: `${name}`,
       // text: `Message: ${message}`,
       html: `<p>Name : ${name}</p>
               <p>Contact : ${contact}</p>
@@ -53,8 +53,8 @@ app.post('/api/report-bug', async (req, res) => {
       to: 'quillixsolutions@gmail.com', // Email received from the contact form
       subject: `Bug data`,
       // text: `Message: ${message}`,
-      html: `<p>${email}</p>
-              <p>${description}</p>`,
+      html: `<p>Email : ${email}</p>
+              <p>Description : ${description}</p>`,
     };
 
     const info = await transporter.sendMail(mailOptions);
