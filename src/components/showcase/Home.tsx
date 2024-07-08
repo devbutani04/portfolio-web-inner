@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from '../general';
+// import logo from '../../assets/pictures/LOGO2.png'
 import logo from '../../assets/pictures/logo2.png'
 
 import forhire from '../../assets/pictures/forHireGif.gif';

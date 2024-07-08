@@ -12,8 +12,8 @@ const transporter = nodemailer.createTransport({
   port: 465,
   secure: true,
   auth: {
-    user: "rjparsana8@gmail.com",
-    pass: "vltyvmstkuzbbvgm",
+    user: "quillixsolutions@gmail.com",
+    pass: "vjmzmrcsalqemtah",
   },
 });
 
@@ -23,11 +23,38 @@ app.post('/api/contact', async (req, res) => {
 
   try {
     const mailOptions = {
-      from: 'rjparsana8@gmail.com',
-      to: email, // Email received from the contact form
-      subject: `New message from ${name}`,
-      text: `Message: ${message}`,
-      html: `<p>Message: ${message}</p>`,
+      from: email,
+      to: 'quillixsolutions@gmail.com', // Email received from the contact form
+      subject: `Contact Data`,
+      // text: `Message: ${message}`,
+      html: `<p>Name : ${name}</p>
+              <p>Contact : ${contact}</p>
+              <p>Email : ${email}</p>
+              <p>Massage : ${message}</p>`,
+    };
+
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Email sent: ', info.response);
+
+    res.status(200).json({ success: true, message: 'Message successfully sent.' });
+  } catch (error) {
+    console.error('Error sending email: ', error);
+    res.status(500).json({ success: false, error: 'Failed to send email.' });
+  }
+});
+
+app.post('/api/report-bug', async (req, res) => {
+  const { email, description } = req.body;
+  console.log(req.body);
+
+  try {
+    const mailOptions = {
+      from: email,
+      to: 'quillixsolutions@gmail.com', // Email received from the contact form
+      subject: `Bug data`,
+      // text: `Message: ${message}`,
+      html: `<p>${email}</p>
+              <p>${description}</p>`,
     };
 
     const info = await transporter.sendMail(mailOptions);
@@ -44,3 +71,11 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+// // Get the button, and when the user clicks on it, execute myFunction
+// document.querySelector("myBtn").onclick = function() {myFunction()};
+
+// /* myFunction toggles between adding and removing the show class, which is used to hide and show the dropdown content */
+// function myFunction() {
+//   document.querySelector("myDropdown").classList.toggle("show");
+// }

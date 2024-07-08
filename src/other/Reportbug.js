@@ -1,8 +1,7 @@
 // ReportBugButton.js
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import './ReportBugButton.css';
-import Contact from '../components/showcase/Contact';
 
 const ReportBugButton = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -17,28 +16,19 @@ const ReportBugButton = () => {
     setIsModalOpen(false);
   };
 
-
-//   useEffect(() => {
-//     if (formMessage.length > 0) {
-//         setTimeout(() => {
-//             setFormMessage('');
-//             setFormMessageColor('');
-//         }, 4000);
-//     }
-// }, [formMessage]);
-
-    // event.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
     // Handle form submission logic here, e.g., send data to a backend server
-    // console.log({ description, email });
+    console.log({ description, email });
 
     // Close the modal after submission
-    // setIsModalOpen(false);
-  
+    setIsModalOpen(false);
+  };
 
   const handleReport = async (event) => {
     event.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/report-bug', { description, email });
+      await axios.post('/api/report-bug', { description, email });
       alert('Bug report submitted successfully!');
     } catch (error) {
       console.error('There was an error submitting the bug report:', error);
@@ -73,7 +63,7 @@ const ReportBugButton = () => {
                   required
                 />
               </label><br/><br/>
-              <button type="submit" onClick={handleReport} className='sbtn' >Submit</button>
+              <button type="submit" className='sbtn'>Submit</button>
             </form>
           </div>
         </div>
