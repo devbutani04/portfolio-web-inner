@@ -12,8 +12,8 @@ const transporter = nodemailer.createTransport({
   port: 465,
   secure: true,
   auth: {
-    user: "quillixsolutions@gmail.com",
-    pass: "vjmzmrcsalqemtah",
+    user: "rjparsana8@gmail.com",
+    pass: "bqrqpypplnzqlazy",
   },
 });
 
@@ -24,7 +24,7 @@ app.post('/api/contact', async (req, res) => {
   try {
     const mailOptions = {
       from: email,
-      to: 'quillixsolutions@gmail.com', // Email received from the contact form
+      to: 'rjparsana8@gmail.com', // Email received from the contact form
       subject: `${name}`,
       // text: `Message: ${message}`,
       html: `<p>Name : ${name}</p>
