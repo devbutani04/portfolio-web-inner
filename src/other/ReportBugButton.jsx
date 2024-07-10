@@ -38,7 +38,7 @@ const ReportBugButton = () => {
   const handleReport = async (event) => {
     event.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/report-bug', { description, email });
+      await axios.post('/api/report-bug', { description, email });
       alert('Bug report submitted successfully!');
     } catch (error) {
       console.error('There was an error submitting the bug report:', error);
