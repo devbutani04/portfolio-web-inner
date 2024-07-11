@@ -1,3 +1,4 @@
+<<<<<<< HEAD:index.js
 
 const express = require('express');
 const nodemailer = require('nodemailer');
@@ -22,66 +23,86 @@ const transporter = nodemailer.createTransport({
     pass: "gjppseyflntnnxxi",
   },
 });
+=======
+// const express = require('express');
+// const nodemailer = require('nodemailer');
+// const bodyParser = require('body-parser');
+// const cors = require('cors');
+// const app = express();
 
-app.post('/api/contact', async (req, res) => {
-  const { contact, email, name, message } = req.body;
-  console.log(req.body);
+// app.use(cors());
+// app.use(bodyParser.json());
 
-  try {
-    const mailOptions = {
-      from: email,
-      to: 'programmhtml@gmail.com', // Email received from the contact form
-      subject: `Contact Data`,
-      // text: `Message: ${message}`,
-      html: `<p>Name : ${name}</p>
-              <p>Contact : ${contact}</p>
-              <p>Email : ${email}</p>
-              <p>Massage : ${message}</p>`,
-    };
+// const transporter = nodemailer.createTransport({
+//   host: "smtp.gmail.com",
+//   port: 465,
+//   secure: true,
+//   auth: {
+//     user: "programmhtml@gmail.com",
+//     pass: "gjppseyflntnnxxi",
+//   },
+// });
+>>>>>>> de37e84f8057a963c2f628564daf32a18e897260:src/components/showcase/contactHandler.js
 
-    const info = await transporter.sendMail(mailOptions);
-    console.log('Email sent: ', info.response);
+// app.post('/api/contact', async (req, res) => {
+//   const { contact, email, name, message } = req.body;
+//   console.log(req.body);
 
-    res.status(200).json({ success: true, message: 'Message successfully sent.' });
-  } catch (error) {
-    console.error('Error sending email: ', error);
-    res.status(500).json({ success: false, error: 'Failed to send email.' });
-  }
-});
+//   try {
+//     const mailOptions = {
+//       from: email,
+//       to: 'programmhtml@gmail.com', // Email received from the contact form
+//       subject: `Contact Data`,
+//       // text: `Message: ${message}`,
+//       html: `<p>Name : ${name}</p>
+//               <p>Contact : ${contact}</p>
+//               <p>Email : ${email}</p>
+//               <p>Massage : ${message}</p>`,
+//     };
 
-app.post('/api/report-bug', async (req, res) => {
-  const { email, description } = req.body;
-  console.log(req.body);
+//     const info = await transporter.sendMail(mailOptions);
+//     console.log('Email sent: ', info.response);
 
-  try {
-    const mailOptions = {
-      from: email,
-      to: 'programmhtml@gmail.com', // Email received from the contact form
-      subject: `Bug data`,
-      // text: `Message: ${message}`,
-      html: `<p>${email}</p>
-              <p>${description}</p>`,
-    };
+//     res.status(200).json({ success: true, message: 'Message successfully sent.' });
+//   } catch (error) {
+//     console.error('Error sending email: ', error);
+//     res.status(500).json({ success: false, error: 'Failed to send email.' });
+//   }
+// });
 
-    const info = await transporter.sendMail(mailOptions);
-    console.log('Email sent: ', info.response);
+// app.post('/api/report-bug', async (req, res) => {
+//   const { email, description } = req.body;
+//   console.log(req.body);
 
-    res.status(200).json({ success: true, message: 'Message successfully sent.' });
-  } catch (error) {
-    console.error('Error sending email: ', error);
-    res.status(500).json({ success: false, error: 'Failed to send email.' });
-  }
-});
+//   try {
+//     const mailOptions = {
+//       from: email,
+//       to: 'programmhtml@gmail.com', // Email received from the contact form
+//       subject: `Bug data`,
+//       // text: `Message: ${message}`,
+//       html: `<p>${email}</p>
+//               <p>${description}</p>`,
+//     };
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+//     const info = await transporter.sendMail(mailOptions);
+//     console.log('Email sent: ', info.response);
 
-// // Get the button, and when the user clicks on it, execute myFunction
-// document.querySelector("myBtn").onclick = function() {myFunction()};
+//     res.status(200).json({ success: true, message: 'Message successfully sent.' });
+//   } catch (error) {
+//     console.error('Error sending email: ', error);
+//     res.status(500).json({ success: false, error: 'Failed to send email.' });
+//   }
+// });
 
-// /* myFunction toggles between adding and removing the show class, which is used to hide and show the dropdown content */
-// function myFunction() {
-//   document.querySelector("myDropdown").classList.toggle("show");
-// }
+// const PORT = process.env.PORT || 5000;
+// app.listen(PORT, () => {
+//   console.log(`Server is running on port ${PORT}`);
+// });
+
+// // // Get the button, and when the user clicks on it, execute myFunction
+// // document.querySelector("myBtn").onclick = function() {myFunction()};
+
+// // /* myFunction toggles between adding and removing the show class, which is used to hide and show the dropdown content */
+// // function myFunction() {
+// //   document.querySelector("myDropdown").classList.toggle("show");
+// // }
