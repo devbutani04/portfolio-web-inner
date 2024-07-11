@@ -12,8 +12,8 @@ const transporter = nodemailer.createTransport({
   port: 465,
   secure: true,
   auth: {
-    user: "programmhtml@gmail.com",
-    pass: "gjppseyflntnnxxi",
+    user: "rjparsana8@gmail.com",
+    pass: "bqrqpypplnzqlazy",
   },
 });
 
@@ -24,8 +24,8 @@ app.post('/api/contact', async (req, res) => {
   try {
     const mailOptions = {
       from: email,
-      to: 'programmhtml@gmail.com', // Email received from the contact form
-      subject: `Contact Data`,
+      to: 'rjparsana8@gmail.com', // Email received from the contact form
+      subject: `${name}`,
       // text: `Message: ${message}`,
       html: `<p>Name : ${name}</p>
               <p>Contact : ${contact}</p>
@@ -50,11 +50,11 @@ app.post('/api/report-bug', async (req, res) => {
   try {
     const mailOptions = {
       from: email,
-      to: 'programmhtml@gmail.com', // Email received from the contact form
+      to: 'quillixsolutions@gmail.com', // Email received from the contact form
       subject: `Bug data`,
       // text: `Message: ${message}`,
-      html: `<p>${email}</p>
-              <p>${description}</p>`,
+      html: `<p>Email : ${email}</p>
+              <p>Description : ${description}</p>`,
     };
 
     const info = await transporter.sendMail(mailOptions);
@@ -72,10 +72,3 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
-// // Get the button, and when the user clicks on it, execute myFunction
-// document.querySelector("myBtn").onclick = function() {myFunction()};
-
-// /* myFunction toggles between adding and removing the show class, which is used to hide and show the dropdown content */
-// function myFunction() {
-//   document.querySelector("myDropdown").classList.toggle("show");
-// }
