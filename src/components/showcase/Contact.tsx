@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import emailjs from '@emailjs/browser'; // Import Email.js
 import colors from '../../constants/colors';
 import twitterIcon from '../../assets/pictures/contact-twitter.png';
 import ghIcon from '../../assets/pictures/contact-gh.png';
@@ -10,15 +11,11 @@ import ResumeDownload from './ResumeDownload';
 
 export interface ContactProps {}
 
-// Function to validate email
 const validateEmail = (email: string) => {
-    const re =
-        // eslint-disable-next-line
-        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(String(email).toLowerCase());
 };
 
-// Utility function to validate the contact number
 const validateContact = (contact: string): boolean => {
     const contactPattern = /^[0-9]{10}$/;
     return contactPattern.test(contact);
@@ -45,70 +42,55 @@ const Contact: React.FC<ContactProps> = (props) => {
     const [name, setName] = useState('');
     const [message, setMessage] = useState('');
     const [isFormValid, setIsFormValid] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false); 
     const [formMessage, setFormMessage] = useState('');
     const [formMessageColor, setFormMessageColor] = useState('');
 
     useEffect(() => {
-        if (
-            validateEmail(email) &&
-            validateContact(contact) &&
-            name.length > 0 &&
-            message.length > 0
-        ) {
-            setIsFormValid(true);
-        } else {
-            setIsFormValid(false);
-        }
+        setIsFormValid(validateEmail(email) && validateContact(contact) && name.length > 0 && message.length > 0);
     }, [email, name, message, contact]);
 
-    async function submitForm() {
+    async function submitForm(e: React.FormEvent) {
+        e.preventDefault(); // Prevent page reload
+
         if (!isFormValid) {
             setFormMessage('Form unable to validate, please try again.');
             setFormMessageColor('red');
             return;
         }
+
         try {
             setIsLoading(true);
-            const res = await fetch(
-                '/api/contact',
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        contact,
-                        email,
-                        name,
-                        message,
-                    }),
-                }
-            );
-            const data = (await res.json()) as
-                | {
-                      success: false;
-                      error: string;
-                  }
-                | { success: true };
-            if (data.success) {
+
+            // Email.js configuration
+            const serviceID = "service_s956frg";
+            const templateID = "template_san93us";
+            const publicKey = "VNoSmy5Dxu21t9qqW";
+
+            const emailParams = {
+                from_name: name,
+                from_email: email,
+                contact_number: contact,
+                message: message,
+            };
+
+            const response = await emailjs.send(serviceID, templateID, emailParams, publicKey);
+
+            if (response.status === 200) {
                 setFormMessage(`Message successfully sent. Thank you ${name}!`);
                 setContact('');
                 setEmail('');
                 setName('');
                 setMessage('');
                 setFormMessageColor(colors.blue);
-                setIsLoading(false);
             } else {
-                setFormMessage(data.error);
+                setFormMessage("Failed to send the message. Please try again.");
                 setFormMessageColor(colors.red);
-                setIsLoading(false);
             }
-        } catch (e) {
-            setFormMessage(
-                'There was an error sending your message. Please try again.'
-            );
+        } catch (error) {
+            setFormMessage("There was an error sending your message. Please try again.");
             setFormMessageColor(colors.red);
+        } finally {
             setIsLoading(false);
         }
     }
@@ -127,98 +109,55 @@ const Contact: React.FC<ContactProps> = (props) => {
             <div style={styles.header}>
                 <h1>Contact Us</h1>
                 <div style={styles.socials}>
-                    <SocialBox
-                        icon={ghIcon}
-                        link={'https://github.com/quillixsolutions'}
-                    />
-                    <SocialBox
-                        icon={inIcon}
-                        link={
-                            'http://www.linkedin.com/in/quillix-solutions-b01426313'
-                        }
-                    />
-                    <SocialBox
-                        icon={twitterIcon}
-                        link={'https://x.com/QuillixSolution'}
-                    />
-                    <SocialBox
-                        icon={instaIcon}
-                        link={'https://www.instagram.com/quillixsolvex'}
-                    />
-                    <SocialBox
-                        icon={whatsappIcon}
-                        link={'https://api.whatsapp.com/send/?phone=919227042628&text&type=phone_number&app_absent=0'}
-                    />
+                    <SocialBox icon={ghIcon} link={'https://github.com/quillixsolutions'} />
+                    <SocialBox icon={inIcon} link={'http://www.linkedin.com/in/quillix-solutions-b01426313'} />
+                    <SocialBox icon={twitterIcon} link={'https://x.com/QuillixSolution'} />
+                    <SocialBox icon={instaIcon} link={'https://www.instagram.com/quillixsolvex'} />
+                    <SocialBox icon={whatsappIcon} link={'https://api.whatsapp.com/send/?phone=917284853844'} />
                 </div>
             </div>
+
             <div className="text-block">
                 <p>
-                    "Need assistance or have a question? Fill out the form
-                    below, and our team will get back to you shortly."
-                </p>
-                <br />
-                <p>
-                    <b>Email: </b>
-                    <a href="mail@quillix.in">mail@quillix.in</a>
-                </p>
-                <br />
-                <p>
-                    <b>Phone: </b>
-                    +91 7284853844
+                    "Need assistance or have a question? Fill out the form below, and our team will get back to you shortly."
                 </p>
 
-                <div style={styles.form}>
+                <form onSubmit={submitForm} style={styles.form}>
                     <label>
-                        <p>
-                            {!name && <span style={styles.star}>*</span>}
-                            <b>Your name:</b>
-                        </p>
+                        <p><b>Your name:</b></p>
                     </label>
                     <input
                         style={styles.formItem}
                         type="text"
-                        name="name"
                         placeholder="Name"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                     />
+
                     <label>
-                        <p>
-                            {!validateEmail(email) && (
-                                <span style={styles.star}>*</span>
-                            )}
-                            <b>Email:</b>
-                        </p>
+                        <p><b>Email:</b></p>
                     </label>
                     <input
                         style={styles.formItem}
                         type="email"
-                        name="email"
                         placeholder="Email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                     />
+
                     <label>
-                        <p>
-                            {!validateContact(contact) && (
-                                <span style={styles.star}>*</span>
-                            )}
-                            <b>Contact Number:</b>
-                        </p>
+                        <p><b>Contact Number:</b></p>
                     </label>
                     <input
                         style={styles.formItem}
                         type="text"
-                        name="contact"
                         placeholder="Contact"
                         value={contact}
                         onChange={(e) => setContact(e.target.value)}
                     />
+
                     <label>
-                        <p>
-                            {!message && <span style={styles.star}>*</span>}
-                            <b>Message:</b>
-                        </p>
+                        <p><b>Message:</b></p>
                     </label>
                     <textarea
                         name="message"
@@ -227,122 +166,35 @@ const Contact: React.FC<ContactProps> = (props) => {
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
                     />
+
                     <div style={styles.buttons}>
                         <button
                             className="site-button"
                             style={styles.button}
                             type="submit"
                             disabled={!isFormValid || isLoading}
-                            onMouseDown={submitForm}
                         >
-                            {!isLoading ? (
-                                'Send Message'
-                            ) : (
-                                <p className="loading">Sending</p>
-                            )}
+                            {!isLoading ? 'Send Message' : 'Sending...'}
                         </button>
-                        <div style={styles.formInfo}>
-                            <p
-                                style={Object.assign(
-                                    {},
-                                    { color: formMessageColor }
-                                )}
-                            >
-                                <b>
-                                    <sub>
-                                        {formMessage
-                                            ? `${formMessage}`
-                                            : ' All messages get forwarded straight to my personal email'}
-                                    </sub>
-                                </b>
-                            </p>
-                            <p>
-                                <sub>
-                                    {!isFormValid ? (
-                                        <span>
-                                            <b style={styles.star}>*</b> =
-                                            required
-                                        </span>
-                                    ) : (
-                                        '\xa0'
-                                    )}
-                                </sub>
-                            </p>
-                        </div>
+                        <p style={{ color: formMessageColor }}>
+                            <b><sub>{formMessage ? formMessage : 'All messages get forwarded straight to our email'}</sub></b>
+                        </p>
                     </div>
-                </div>
-                <br />
-                <div>335, The Galleria 2, The Galleria Business Hub, Mahavir Chowk, Yogi Chowk Ground, Chikuwadi, Nana Varachha, Surat, Gujarat 395010</div>
-                <br/>
-                <div>
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d873.0511089983053!2d72.88570698781841!3d21.218310447016886!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04fdb617d26c1%3A0xd6cb2f23923633b8!2sThe%20Galleria%202!5e0!3m2!1sen!2sin!4v1718190090429!5m2!1sen!2sin"
-                        width="100%"
-                        height="500"
-                        loading="lazy"
-                    ></iframe>
-                </div>
+                </form>
             </div>
-           
         </div>
     );
 };
 
 const styles: { [key: string]: React.CSSProperties } = {
-    form: {
-        display: 'flex',
-        flexDirection: 'column',
-        marginTop: 32,
-    },
-    formItem: {
-        marginTop: 4,
-        marginBottom: 16,
-        padding: '8px',
-        borderRadius: '4px',
-        border: '1px solid #ccc',
-    },
-    socialImage: {
-        width: 36,
-        height: 36,
-    },
-    buttons: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-    formInfo: {
-        textAlign: 'right',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'flex-end',
-        paddingLeft: 24,
-    },
-    star: {
-        paddingRight: 4,
-        color: 'red',
-    },
-    button: {
-        minWidth: 184,
-        padding:10
-    },
-    header: {
-        display: 'flex',
-        alignItems: 'flex-end',
-        justifyContent: 'space-between',
-    },
-    socials: {
-        marginBottom: 16,
-        display: 'flex',
-        justifyContent: 'flex-end',
-    },
-    social: {
-        width: 20,
-        height: 20,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginLeft: 8,
-    },
+    form: { display: 'flex', flexDirection: 'column', marginTop: 32 },
+    formItem: { marginTop: 4, marginBottom: 16, padding: '8px', borderRadius: '4px', border: '1px solid #ccc' },
+    socialImage: { width: 36, height: 36 },
+    buttons: { display: 'flex', justifyContent: 'space-between', alignItems: 'center' },
+    button: { minWidth: 184, padding: 10 },
+    header: { display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' },
+    socials: { marginBottom: 16, display: 'flex', justifyContent: 'flex-end' },
+    social: { width: 20, height: 20, display: 'flex', justifyContent: 'center', alignItems: 'center', marginLeft: 8 },
 };
 
 export default Contact;
