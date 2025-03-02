@@ -120,7 +120,7 @@ const styles: StyleSheetCSS = {
         padding: '48px 0 48px 48px',
         boxSizing: 'border-box',
         position: 'fixed',
-        overflow: 'scroll',
+        overflow: 'hidden',
     },
     header: {
         flexDirection: 'column',
