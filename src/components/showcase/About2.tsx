@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { CSSProperties } from 'react'; // Import CSSProperties for style typing
 
 // Importing images from assets
@@ -7,8 +6,6 @@ import { CSSProperties } from 'react'; // Import CSSProperties for style typing
 import jeel from '../../assets/pictures/jeel.jpg';
 import nikhil from '../../assets/pictures/nikhil.jpg';
 import yogesh from '../../assets/pictures/yogesh.jpg';
-import currentMe from '../../assets/pictures/currentme.jpg';
-import logoo from '../../assets/pictures/logo.png';
 
 // Importing components
 // import ResumeDownload from './ResumeDownload';
