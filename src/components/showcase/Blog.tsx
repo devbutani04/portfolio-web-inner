@@ -3,29 +3,9 @@ import styled, { css } from 'styled-components';
 import image1 from '../../assets/pictures/blog1.jpg';
 import image2 from '../../assets/pictures/blog2.jpg';
 import { Grid} from '@mui/material';
-import axios from 'axios';
 
-const Navbar = styled.nav`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-`;
 
-const NavTitle = styled.h1`
-    font-size: 24px;
-    margin: 0;
-`;
 
-const NavLinks = styled.div`
-    a {
-        text-decoration: none;
-        font-size: 16px;
-
-        &:hover {
-            text-decoration: underline;
-        }
-    }
-`;
 
 const GalleryContainer = styled.div`
     display: flex;
@@ -144,7 +124,7 @@ const Blog: React.FC = () => {
                 <input style={styles.formItem} type="text" placeholder="Search" onChange={(e) => setSearch(e.target.value)}/>
             <GalleryContainer>
             <Grid container spacing={3}>
-                {cards.filter((card1 , i1)=>{
+                {cards.filter((card1)=>{
                     if (card1.title.match(Search)) {
                         return card1
                     }
